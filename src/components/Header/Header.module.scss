@@ -1,0 +1,45 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+
+    img {
+        margin-right: 15px;
+    }
+
+    &__left {
+        display: flex;
+        align-items: center;
+
+        h3 {
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        p {
+            margin: 0;
+            opacity: .5;
+        }
+    }
+
+    &__right {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+
+        display: flex;
+
+        li {
+
+            img,
+            span {
+                cursor: pointer;
+            }
+        }
+
+        li:first-child {
+            margin-right: 15px;
+        }
+    }
+}
