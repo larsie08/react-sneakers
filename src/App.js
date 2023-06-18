@@ -3,6 +3,7 @@ import Drawer from './components/Drawer';
 
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
+import Orders from './pages/Orders';
 
 import axios from 'axios';
 import React from 'react';
@@ -76,7 +77,7 @@ function App() {
   return (
     <AppContext.Provider value={{items, cartItems, favorites, setCartItems, onAddToCart, onAddToFavorite, isItemAdded ,setCartOpened}}>
       <div className="wrapper clear">
-      {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />}
+      <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} opened={cartOpened}/>
 
       <Header onClickCart={() => setCartOpened(true)} />
 
@@ -98,10 +99,13 @@ function App() {
 
         <Route path='/favorites' 
         element={
-          <Favorites 
-          items={favorites}
-          onAddToFavorite={onAddToFavorite}
-          />
+          <Favorites />
+        } exact>
+        </Route>
+
+        <Route path='/orders' 
+        element={
+          <Orders />
         } exact>
         </Route>
       </Routes>

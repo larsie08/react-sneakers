@@ -1,187 +1,186 @@
 .overlay {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background-color: rgba(0, 0, 0, .5);
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .2s ease-in-out, visibility .2s ease-in-out;
+  overflow: hidden;
+}
+
+.overlayVisible {
+  visibility: visible;
+  opacity: 1;
 
   .drawer {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    width: 420px;
-    height: 100%;
-    right: 0px;
-    background: #FFFFFF;
-    box-shadow: -10px 4px 24px rgba(0, 0, 0, .1);
-    padding: 30px;
-  
-    .cart {
-      flex: 1;
-      overflow: auto;
-      margin-bottom: 40px;
-    }
-  
-    h2 {
+      transform: translateX(0);
+  }
+}
+
+.drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 420px;
+  height: 100%;
+
+  background-color: #fff;
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 30px;
+
+  transform: translateX(100%);
+  transition: transform .2s ease-in-out;
+
+  h2 {
+      display: flex;
+      justify-content: space-between;
       margin: 0;
-    }
-  }
+      margin-bottom: 30px;
 
-  .cartTotalBlock {
-
-    ul {
-      display: block;
-      margin-bottom: 30px !important;
-      li {
-        display: flex;
-        align-items: flex-end;
-        margin-bottom: 20px;
-    
-        div {
-          flex: 1;
-          height: 1px;
-          border-bottom: 1px dashed #dfdfdf;
-          position: relative;
-          top: -4px;
-          margin: 0 7px;
-        }
-      }
-    }
-  
-    .greenButton {
-      position: relative;
-
-      &:disabled {
-        animation: button-loading .6s ease-in-out infinite;
-      }
-  
-      &:hover {
-        img {
-          transform: translateX(5px)
-        }
-      }
-  
       img {
-        position: absolute;
-        right: 40px;
-        top: 20px;
-        transition: tranform .15s ease-in-out;
+          cursor: pointer;
       }
-    }
+  }
+}
+
+.cart {
+  overflow: auto;
+  margin-bottom: 40px;
+  flex: 1;
+
+  &__item {
+      display: flex;
+      align-items: center;
+
+      border: 1px solid #f3f3f3;
+      border-radius: 20px;
+      overflow: hidden;
+
+      padding: 20px;
+      margin-bottom: 20px;
+
+      p {
+          font-size: 16px;
+          margin: 0;
+          margin-bottom: 5px;
+      }
+
+      b {
+          font-size: 14px;
+      }
   }
 
-  .greenButton {
-    width: 100%;
-    height: 55px;
-    background-color: #9dd558;
-    border-radius: 18px;
-    border: 0;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color .2s ease-in-out;
-
-    &:disabled {
-      background-color: #bebebe;
-      cursor: default;
-
-    }
-
-    &:hover {
-      background-color: lighten(#9dd558, 5%);
-    }
-
-    &:active {
-      background-color: darken(#9dd558, 5%);
-    }
-
-    svg {
-      margin-left: 20px;
-    }
+  &__desc {
+      margin-right: 20px;
+      flex: 1;
   }
 
-  .cartEmpty {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    flex: 1;
-
-    p {
-      width: 280px;
-      line-height: 24px;
-    }
-
-    .greenButton {
-      width: 245px;
-      margin-top: 20px;
-
-      &:hover {
-        img {
-          transform: rotate(180deg) translateX(3px);
-        }
-      }
-  
-      img {
-        position: relative;
-        top: 1px;
-        transform: rotate(180deg);
-        margin-right: 15px;
-        transition: transform .15s ease-in-out;
-      }
-    }
-  }
-
-  .cartItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    border: 1px solid #f3f3f3;
-    border-radius: 20px;
-    overflow: hidden;
-    padding: 20px;
-  
-    .cartItemImg {
+  &__img {
       height: 70px;
       width: 70px;
       background-size: contain;
       background-position: 0 -3px;
       background-repeat: no-repeat;
       margin-right: 20px;
-    }
-  
-    p {
-      font-size: 16px;
-    }
-  
-    b {
-      font-size: 14px;
-    }
-  
-    .removeBtn {
-      opacity: .5;
+  }
+
+  &__remove {
+      opacity: 0.5;
       cursor: pointer;
-      transition: opacity .2s ease-in-out;
-  
+      transition: opacity 0.15s ease-in-out;
+
       &:hover {
-        opacity: 1;
+          opacity: 1;
       }
-    }
+  }
 }
 
-@keyframes button-loading {
-  0% {
-    opacity: 1;
+.cartTotalBlock {
+  ul {
+      margin: 0;
+      padding: 0;
+
+      margin-bottom: 40px;
+
+      li {
+          display: flex;
+          align-items: flex-end;
+          margin-bottom: 20px;
+
+          div {
+              height: 1px;
+              border-bottom: 1px dashed #dfdfdf;
+              flex: 1px;
+
+              position: relative;
+              top: -4px;
+              margin: 0 7px;
+          }
+      }
   }
-  50% {
-    opacity: .5;
+}
+
+.greenButton {
+  width: 100%;
+  height: 55px;
+
+  background: #9dd558;
+  border-radius: 18px;
+  border: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.1s ease-in-out;
+
+  position: relative;
+
+  img {
+      position: absolute;
+      right: 30px;
+      top: 20px;
+      transition: transform 0.15s ease-in-out;
   }
-  100% {
-    opacity: 1;
+
+  &:disabled {
+      background-color: #bebebe;
+      cursor: default;
+  }
+
+  &:hover {
+      img {
+          transform: translateX(5px);
+      }
+  }
+
+  &:active {
+      background: darken(#9dd558, 5%);
+  }
+}
+
+
+@media (max-width: 650px) {
+  .drawer {
+      width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .cart {
+      &__item {
+          p {
+              font-size: 13px;
+          }
+      }
   }
 }
