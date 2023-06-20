@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import Info from "../Info/Info";
+
 import AppContext from "../../context";
 
 import styles from "./Drawer.module.scss";
@@ -9,7 +10,14 @@ import styles from "./Drawer.module.scss";
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 function Drawer({onClose, onRemove, items = [], opened}) {
-    const {cartItems ,setCartItems} = React.useContext(AppContext)
+    const {cartItems ,setCartItems} = React.useContext(AppContext);
+
+    if (opened) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "";
+    }
+
     const [isOrderComplete, setIsOrderComplete] = React.useState(false);
     const [orderId, setOrderId] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
@@ -32,7 +40,8 @@ function Drawer({onClose, onRemove, items = [], opened}) {
                 await delay(1000);
             }
         } catch(error) {
-            console.log('Ошибка при создании заказа :(')
+            alert('Ошибка при создании заказа :(');
+            console.log(error);
         }
         setIsLoading(false);
     }
@@ -40,7 +49,10 @@ function Drawer({onClose, onRemove, items = [], opened}) {
     return (
         <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
             <div className={styles.drawer}>
-                <h2>Корзина <img onClick={onClose} src="/img/btn-remove.svg" alt="Remove"/></h2>
+                <h2>
+                    Корзина 
+                    <img onClick={onClose} src="/img/btn-remove.svg" alt="Remove"/>
+                </h2>
 
                 {
                     items.length > 0 ? 

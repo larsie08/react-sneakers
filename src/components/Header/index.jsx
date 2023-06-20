@@ -15,8 +15,8 @@ function Header(props) {
                 <div className={styles.header__left}>
                     <img width={40} height={40} alt="logo" src="/img/logo.png" />
                     <div>
-                        <h3 className="text-uppercase mr-0">React Sneakers</h3>
-                        <p className="opacity-5">Магазин лучших кроссовок</p>
+                        <h3>React Sneakers</h3>
+                        <p>Магазин лучших кроссовок</p>
                     </div>
                 </div>
             </Link>
@@ -26,7 +26,7 @@ function Header(props) {
                     <span>{totalPrice} руб.</span>
                 </li>
                 <Link to="/favorites">
-                    <li className="mr-20 cu-p d-flex align-center">
+                    <li>
                             <img width={18} height={18} alt="Закладки" src="/img/headerHeart.svg" />
                     </li>
                 </Link>

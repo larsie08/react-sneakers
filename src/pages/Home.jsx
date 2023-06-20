@@ -28,17 +28,17 @@ function Home ({
     }
 
     return (
-        <div className="content p-40">
-            <div className="d-flex align-center justify-between mb-40">
+        <div className="content">
+            <div className="header-content">
                 <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все кроссовки'}</h1>
-                <div className="search-block d-flex">
+                <div className="search">
                     <img src="/img/search.svg" alt="search" />
                     <input onChange={onChangeSearchInput} value={searchValue} placeholder="Поиск..." />
                     {searchValue && <img className="clear" src="img/btn-remove.svg" alt="Clear" onClick={() => setSearchValue('')} />}
                 </div>
             </div>
 
-            <div className="d-flex flex-wrap">
+            <div className="cards">
                 {renderItems()}
             </div>
       </div>
